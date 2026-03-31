@@ -9,7 +9,7 @@ pull:
   - prefect.deployments.steps.set_working_directory:
       directory: /repo
   - prefect.deployments.steps.git_clone:
-      repository: https://github.com/nsls2/srx-workflows.git
+      repository: https://github.com/junaishima/srx-workflows.git
       branch: fix-api-key-issues
 
 deployments:
@@ -24,7 +24,7 @@ deployments:
     schedule: {}
     work_pool:
       job_variables:
-        image: ghcr.io/nsls2/srx-workflows:fix-api-key-issues
+        image: ghcr.io/junaishima/srx-workflows:fix-api-key-issues
         image_pull_policy: Always
         network: slirp4netns
         volumes:
