@@ -5,6 +5,11 @@ from tiled.client import from_uri
 
 @task
 def get_run(uid, api_key=None):
+    logger = get_run_logger()
+    if not api_key:
+        logger.info("No API key")
+    else:
+        logger.info(f"API key first 6 chars: {api_key[6:]}")
     tiled_client = from_uri("https://tiled.nsls2.bnl.gov", api_key=api_key)
     run = tiled_client["srx/raw"][uid]
     return run

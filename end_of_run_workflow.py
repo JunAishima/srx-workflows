@@ -85,7 +85,7 @@ def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
     if api_key:
         logger.info(f"api_key: first 5: {api_key[:5]}")
     else:
-        loger.info("No API key")
+        logger.info("No API key")
     if not api_key:
         api_key = get_api_key_from_env()
 
