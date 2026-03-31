@@ -13,8 +13,12 @@ from data_validation import get_run
 
 CATALOG_NAME = "srx"
 
-
+@task(log_prints=True)
 def get_api_key_from_env():
+    logger = get_run_logger()
+    contents = os.listdir("/srv")
+    for content in contents:
+        logger.info(f"/srv: {content}")
     with open("/srv/container.secret", "r") as secrets:
         load_dotenv(stream=secrets)
     api_key = os.environ["TILED_API_KEY"]
@@ -85,7 +89,7 @@ def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
     if api_key:
         logger.info(f"api_key: first 5: {api_key[:5]}")
     else:
-        logger.info("No API key")
+        logger.info("end_of_run_workflow 1: No API key")
     if not api_key:
         api_key = get_api_key_from_env()
 
