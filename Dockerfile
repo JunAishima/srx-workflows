@@ -19,6 +19,7 @@ COPY default.py .
 RUN mkdir /etc/tiled
 RUN mkdir /.prefect -m 0777
 RUN mkdir /repo -m 0777
+RUN mkdir /.cache -m 0777
 
 RUN /bin/bash /shell-hook
 
