@@ -90,8 +90,7 @@ def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
         logger.info(f"api_key: first 5: {api_key[:5]}")
     else:
         logger.info("end_of_run_workflow 1: No API key")
-    if not api_key:
-        api_key = get_api_key_from_env()
+    api_key = get_api_key_from_env()
 
     # data_validation(uid, return_state=True, api_key=api)
     xanes_exporter(uid, api_key=api_key, dry_run=dry_run)
