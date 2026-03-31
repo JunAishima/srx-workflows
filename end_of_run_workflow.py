@@ -80,7 +80,12 @@ def log_completion():
 @flow
 @slack
 def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
+    logger = get_run_logger()
     uid = stop_doc["run_start"]
+    if api_key:
+        logger.info(f"api_key: first 5: {api_key[:5]}")
+    else:
+        loger.info("No API key")
     if not api_key:
         api_key = get_api_key_from_env()
 
