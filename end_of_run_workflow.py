@@ -37,6 +37,8 @@ def slack(func):
 
     def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
         flow_run_name = FlowRunContext.get().flow_run.dict().get("name")
+        if not api_key:
+            api_key = get_api_key_from_env()
 
         # Load slack credentials that are saved in Prefect.
         mon_prefect = SlackWebhook.load("mon-prefect")
@@ -90,7 +92,6 @@ def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
         logger.info(f"api_key: first 5: {api_key[:5]}")
     else:
         logger.info("end_of_run_workflow 1: No API key")
-    api_key = get_api_key_from_env()
 
     # data_validation(uid, return_state=True, api_key=api)
     xanes_exporter(uid, api_key=api_key, dry_run=dry_run)
